@@ -1,0 +1,8 @@
+build/
+*.apk
+*.jks
+*.keystore
+local.properties
+sdk/
+.DS_Store
+crash.txt
