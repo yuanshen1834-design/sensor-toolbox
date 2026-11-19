@@ -70,6 +70,25 @@ bash build.sh          # 输出 build/sensorkit.apk
 - **点云不是真实深度**：由检测框位置与面积推算方位与距离，属于示意级的三维可视化。
 - **在线识别需要自备 API Key**：在「识别」页填写，只保存在本机 SharedPreferences。
 
+
+## 关于「在手机上开发手机 App」
+
+**这不是首创。** Android 平台上早就有成熟的移动端开发工具：
+
+- **AIDE**（appfour，2013 年起）：手机上的完整 IDE，可直接编译 Java → dex 并签名 APK
+- **Sketchware**（2016 年起）：积木式开发，手机端编译出 APK
+- **AndroidIDE**（开源，2021 年起）：在 Android 上运行 Gradle + Android SDK
+- **Termux + proot-distro + Ubuntu + Android SDK**：长期存在的通行做法
+- apktool / AXML 手工改包：由来已久
+
+本项目在其中的位置是：
+
+- 全流程**不使用 Gradle、Android Studio 或官方 SDK 构建工具**，只在手机上的 Ubuntu(proot) 容器里用 `javac` + `d8` + `aapt` + `zipalign` + `apksigner` 命令行手工组装 APK
+- 在这样一个受限环境里，做出的是功能完整的实用应用（传感器、双卡信号、电池、端侧检测点云、类 RT-Thread 内核、图形化控制台），而不是一个 Hello World
+- 构建脚本 `build.sh` 只有几十行，可完全复现
+
+如果要对标历史，它更像「一次在手机上复刻 Android 打包链路的工程练习」，而不是「人类首次」。
+
 ## License
 
 MIT
